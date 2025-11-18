@@ -25,8 +25,8 @@ let btn = document.querySelector('#btn');
 let main = document.querySelector('main');
 btn.addEventListener('click', function () {
     let h1 = document.createElement('h1');
-    let y = Math.floor(Math.random() * 80)
-    let x = Math.floor(Math.random() * 80)
+    let y = Math.floor(Math.random() * 100)
+    let x = Math.floor(Math.random() * 100)
     let rotate = Math.floor(Math.random() * 360)
         let sc = Math.floor(Math.random() * 4)
     let r = Math.floor(Math.random() * 256)
