@@ -21,7 +21,7 @@ body::before {
   position: absolute;
   width: 200%;
   height: 200%;
-  background: url('https://i.imgur.com/h0bZx0g.png');
+  /* background: url('https://i.imgur.com/h0bZx0g.png'); */
   opacity: 0.15;
   animation: float 40s linear infinite;
 }
