@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle at top, #0d0d17, #0a0a12 60%, #000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Floating glowing particles */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url('https://i.imgur.com/h0bZx0g.png');
+  opacity: 0.15;
+  animation: float 40s linear infinite;
+}
+
+/* Card */
+.card {
+  width: 470px;
+  padding: 35px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  box-shadow: 0 0 35px rgba(0, 255, 200, 0.12);
+  animation: drop 0.7s ease-out;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #9effff;
+  text-shadow: 0 0 10px #00ffd5;
+}
+
+.card p {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.card p span {
+  color: #79f7ff;
+  font-weight: bold;
+}
+
+/* Progress Bar Outer */
+.outer {
+  width: 100%;
+  height: 26px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.09);
+}
+
+/* Shine animation */
+.outer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  animation: shine 1.6s infinite linear;
+}
+
+/* Inner (Progress) */
+.inner {
+  height: 100%;
+  width: 0%;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #00ffbb, #00b7ff, #007bff);
+  box-shadow: 0 0 18px #00fcd8;
+  transition: width 0.15s ease-in-out;
+}
+
+/* Bottom section */
+.bottom {
+  margin-top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottom h2 {
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow: 0 0 10px #00ffd0;
+}
+
+/* Button */
+.bottom button {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #009dff, #006eff);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: 0.25s ease;
+  box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+}
+
+/* Hover */
+.bottom button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #00c8ff;
+}
+
+/* Click */
+.bottom button:active {
+  transform: scale(0.92);
+}
+
+/* Keyframes */
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine {
+  0% { left: -150%; }
+  100% { left: 160%; }
+}
+
+@keyframes float {
+  0% { transform: translate(0,0) scale(1); }
+  100% { transform: translate(-50px, -60px) scale(1.2); }
+}
