@@ -1,16 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aesthetic Profile Cards</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Piano Keys</title>
 
-  <main id="cards-container">
-  </main>
+        <style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0b1625, #0d1e31);
+        font-family: 'Poppins', sans-serif;
+    }
 
-  <script src="script.js"></script>
-</body>
+    .piano-container {
+        padding: 20px 25px;
+        background: #ffffff;
+        border-radius: 30px;
+        display: flex;
+        gap: 10px;
+        position: relative;
+        box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .key {
+        width: 75px;
+        height: 260px;
+        background: linear-gradient(135deg, #fafafa, #e6e6e6);
+        border-radius: 14px;
+        border: 2px solid #bdbdbd;
+        box-shadow: 0px 10px 22px rgba(0,0,0,0.3);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        font-size: 20px;
+        letter-spacing: 2px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease-in-out;
+        position: relative;
+        z-index: 1;
+    }
+
+    .key:active {
+        transform: translateY(8px);
+        background: linear-gradient(135deg, #dcdcdc, #c1c1c1);
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .key.black {
+        width: 50px;
+        height: 160px;
+        background: linear-gradient(135deg, #000, #2b2b2b);
+        border: none;
+        position: absolute;
+        top: 20px;
+        z-index: 2;
+        color: #fff;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    .key.black:active {
+        background: #474747;
+    }
+
+    .w { left: 60px; }
+    .e { left: 145px; }
+    .t { left: 315px; }
+    .y { left: 400px; }
+    .u { left: 485px; }
+</style>
+
+    </head>
+    <body>
+
+        <div class="piano-container">
+
+            <div class="key">A</div>
+            <div class="key">S</div>
+            <div class="key">D</div>
+            <div class="key">F</div>
+            <div class="key">G</div>
+            <div class="key">H</div>
+            <div class="key">J</div>
+
+            <div class="key black w">W</div>
+            <div class="key black e">E</div>
+            <div class="key black t">T</div>
+            <div class="key black y">Y</div>
+            <div class="key black u">U</div>
+
+        </div>
+        <script>
+    let sounds = [
+        "1.mp3",
+        "2.mp3",
+        "3.mp3",
+        "4.mp3",
+        "5.mp3",
+        "6.mp3",
+        "7.mp3",
+        "8.mp3",
+        "9.mp3",
+        "10.mp3",
+        "11.mp3",
+        "12.mp3",
+
+    ]
+    let keys = document.querySelectorAll ('.key')
+    keys.forEach (function (key, idx) {
+        key.addEventListener ('click',()=> {
+            let audio = new Audio (sounds[idx]);
+            audio.play ();
+        })
+    })
+
+
+    document.addEventListener ('keydown',(tamim)=> {
+        
+   keys.forEach (function(key,idx) {
+    if(key.innerText.toLowerCase()=== tamim.key) {
+        let aud = new Audio (sounds[idx])
+                    aud.play ();
+
+    }
+    else if (key.innerText ===tamim.key) {
+
+      let aud = new Audio (sounds[idx])
+                    aud.play ();
+    }
+})    
+})
+</script>
+    </body>
 </html>
