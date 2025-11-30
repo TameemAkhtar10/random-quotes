@@ -1,141 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Piano Keys</title>
 
-        <style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #0b1625, #0d1e31);
-        font-family: 'Poppins', sans-serif;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test</title>
 
-    .piano-container {
-        padding: 20px 25px;
-        background: #ffffff;
-        border-radius: 30px;
-        display: flex;
-        gap: 10px;
-        position: relative;
-        box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
-    }
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #001f3f;
+            font-family: poppins, sans-serif;
+            color: #fff;
+        }
 
-    .key {
-        width: 75px;
-        height: 260px;
-        background: linear-gradient(135deg, #fafafa, #e6e6e6);
-        border-radius: 14px;
-        border: 2px solid #bdbdbd;
-        box-shadow: 0px 10px 22px rgba(0,0,0,0.3);
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        font-size: 20px;
-        letter-spacing: 2px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.15s ease-in-out;
-        position: relative;
-        z-index: 1;
-    }
+        .box {
+            width: 60%;
+            max-width: 600px;
+            background: #022a57;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px #000;
+            text-align: center;
+        }
 
-    .key:active {
-        transform: translateY(8px);
-        background: linear-gradient(135deg, #dcdcdc, #c1c1c1);
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-    }
+        #word {
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
 
-    .key.black {
-        width: 50px;
-        height: 160px;
-        background: linear-gradient(135deg, #000, #2b2b2b);
-        border: none;
-        position: absolute;
-        top: 20px;
-        z-index: 2;
-        color: #fff;
-        border-radius: 10px;
-        font-size: 18px;
-    }
+        input {
+            width: 80%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            text-align: center;
+            outline: none;
+            background: #fff;
+            color: #000;
+        }
 
-    .key.black:active {
-        background: #474747;
-    }
+        .row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            font-size: 20px;
+        }
 
-    .w { left: 60px; }
-    .e { left: 145px; }
-    .t { left: 315px; }
-    .y { left: 400px; }
-    .u { left: 485px; }
-</style>
+        button {
+            margin-top: 25px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            background: #00bfff;
+            font-size: 18px;
+            cursor: pointer;
+            color: #000;
+            font-weight: 600;
+            transition: .2s;
+        }
 
-    </head>
-    <body>
+        button:hover {
+            background: #0099cc;
+        }
 
-        <div class="piano-container">
+        #startBtnnn {
+            display: none;
+            text-transform: uppercase;
+        }
 
-            <div class="key">A</div>
-            <div class="key">S</div>
-            <div class="key">D</div>
-            <div class="key">F</div>
-            <div class="key">G</div>
-            <div class="key">H</div>
-            <div class="key">J</div>
+        .btns {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
 
-            <div class="key black w">W</div>
-            <div class="key black e">E</div>
-            <div class="key black t">T</div>
-            <div class="key black y">Y</div>
-            <div class="key black u">U</div>
+<body>
 
+    <div class="box">
+        <h2>Typing Speed Test</h2>
+
+        <div id="word">Start Game</div>
+
+        <input type="text" id="input" disabled placeholder="Press Start to begin">
+
+        <div class="row">
+            <div>Time: <span id="time">60</span></div>
+            <div>Score: <span id="score">0</span></div>
         </div>
-        <script>
-    let sounds = [
-        "1.mp3",
-        "2.mp3",
-        "3.mp3",
-        "4.mp3",
-        "5.mp3",
-        "6.mp3",
-        "7.mp3",
-        "8.mp3",
-        "9.mp3",
-        "10.mp3",
-        "11.mp3",
-        "12.mp3",
+        <div class="btns">
+            <button id="startBtn">START</button>
+            <button id="startBtnnn">submit</button>
+        </div>
+    </div>
+    <script>
+        let btn = document.querySelector('#startBtn');
+let text = document.querySelector('#word');
+let inp = document.querySelector('#input');
+let displayscore = document.querySelector("#score");
+let displaytime = document.querySelector("#time");
+let btn2 = document.querySelector('#startBtnnn');
 
-    ]
-    let keys = document.querySelectorAll ('.key')
-    keys.forEach (function (key, idx) {
-        key.addEventListener ('click',()=> {
-            let audio = new Audio (sounds[idx]);
-            audio.play ();
-        })
-    })
+let timer;
+let score = 0;
+let timeee = 60;
+let issubmitphase = false;
 
+let letters = "abcdefghijklmnopqrstuvwxyz";
+let randomLetter = letters[Math.floor(Math.random() * letters.length)];
 
-    document.addEventListener ('keydown',(tamim)=> {
-        
-   keys.forEach (function(key,idx) {
-    if(key.innerText.toLowerCase()=== tamim.key) {
-        let aud = new Audio (sounds[idx])
-                    aud.play ();
+btn.addEventListener('click', function () {
+    randomLetter = letters[Math.floor(Math.random() * letters.length)]; 
+    inp.disabled = false;
+    clearInterval(timer);
+    timeee = 60;
 
+        displaytime.innerHTML = 60;
+    text.innerHTML = randomLetter;
+    btn2.style.display = 'block';
+    btn.style.display = 'none';
+
+    timer = setInterval(() => {
+        displaytime.innerHTML = timeee;
+        timeee--;
+
+        if (timeee < 0) {
+            clearInterval(timer);
+            btn.disabled = true;
+            displaytime.innerHTML = "Time Up!";
+        }
+    }, 1000);
+});
+
+btn2.addEventListener('click', () => {
+    clearInterval(timer);
+
+    btn.style.display = 'block';
+    btn2.style.display = 'none';
+    inp.disabled = true;
+
+    if (inp.value === randomLetter) {
+        score++;
+        displayscore.innerHTML = score;
+
+        randomLetter = letters[Math.floor(Math.random() * letters.length)];
+        text.innerHTML = randomLetter;
+        inp.value = "";
+    } else {
+        score = 0;
+        displayscore.innerHTML = score;
+        displaytime.innerHTML = "wrong attempt"
+        inp.value = "";
     }
-    else if (key.innerText ===tamim.key) {
+});
 
-      let aud = new Audio (sounds[idx])
-                    aud.play ();
-    }
-})    
-})
-</script>
-    </body>
+    </script>
+</body>
+
 </html>
