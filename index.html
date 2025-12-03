@@ -2,171 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Speed Test</title>
-
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #001f3f;
-            font-family: poppins, sans-serif;
-            color: #fff;
-        }
-
-        .box {
-            width: 60%;
-            max-width: 600px;
-            background: #022a57;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px #000;
-            text-align: center;
-        }
-
-        #word {
-            font-size: 35px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            padding-bottom: 10px;
-        }
-
-        input {
-            width: 80%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 20px;
-            text-align: center;
-            outline: none;
-            background: #fff;
-            color: #000;
-        }
-
-        .row {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            font-size: 20px;
-        }
-
-        button {
-            margin-top: 25px;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 10px;
-            background: #00bfff;
-            font-size: 18px;
-            cursor: pointer;
-            color: #000;
-            font-weight: 600;
-            transition: .2s;
-        }
-
-        button:hover {
-            background: #0099cc;
-        }
-
-        #startBtnnn {
-            display: none;
-            text-transform: uppercase;
-        }
-
-        .btns {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <main>
+    
+    <section>
+      <div class="all-reels">
+        
+      </div>
+    </section>
+  </main>
 
-    <div class="box">
-        <h2>Typing Speed Test</h2>
 
-        <div id="word">Start Game</div>
-
-        <input type="text" id="input" disabled placeholder="Press Start to begin">
-
-        <div class="row">
-            <div>Time: <span id="time">60</span></div>
-            <div>Score: <span id="score">0</span></div>
-        </div>
-        <div class="btns">
-            <button id="startBtn">START</button>
-            <button id="startBtnnn">submit</button>
-        </div>
-    </div>
-    <script>
-        let btn = document.querySelector('#startBtn');
-let text = document.querySelector('#word');
-let inp = document.querySelector('#input');
-let displayscore = document.querySelector("#score");
-let displaytime = document.querySelector("#time");
-let btn2 = document.querySelector('#startBtnnn');
-
-let timer;
-let score = 0;
-let timeee = 60;
-let issubmitphase = false;
-
-let letters = "abcdefghijklmnopqrstuvwxyz";
-let randomLetter = letters[Math.floor(Math.random() * letters.length)];
-
-btn.addEventListener('click', function () {
-    randomLetter = letters[Math.floor(Math.random() * letters.length)]; 
-    inp.disabled = false;
-    clearInterval(timer);
-    timeee = 60;
-
-        displaytime.innerHTML = 60;
-    text.innerHTML = randomLetter;
-    btn2.style.display = 'block';
-    btn.style.display = 'none';
-
-    timer = setInterval(() => {
-        displaytime.innerHTML = timeee;
-        timeee--;
-
-        if (timeee < 0) {
-            clearInterval(timer);
-            btn.disabled = true;
-            displaytime.innerHTML = "Time Up!";
-        }
-    }, 1000);
-});
-
-btn2.addEventListener('click', () => {
-    clearInterval(timer);
-
-    btn.style.display = 'block';
-    btn2.style.display = 'none';
-    inp.disabled = true;
-
-    if (inp.value === randomLetter) {
-        score++;
-        displayscore.innerHTML = score;
-
-        randomLetter = letters[Math.floor(Math.random() * letters.length)];
-        text.innerHTML = randomLetter;
-        inp.value = "";
-    } else {
-        score = 0;
-        displayscore.innerHTML = score;
-        displaytime.innerHTML = "wrong attempt"
-        inp.value = "";
-    }
-});
-
-    </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
