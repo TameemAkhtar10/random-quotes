@@ -1,178 +1,157 @@
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'helvetica neue';
-  color: white;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-  background-color: black;
-}
-
-main {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to right bottom, rgb(26, 26, 26), rgb(30, 30, 30), black);
-  padding: 20px;
+  background: #e6e0dc;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 section {
-  height: 100%;
-  width: 350px;
-  background-color: black;
-  border-radius: 10px;
-  margin: auto;
+  width: 380px;
+  height: 100vh;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
 }
 
 .all-reels {
   height: 100%;
-  width: 100%;
-
-  overflow: auto;
+  overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
-
-.all-reels::-webkit-scrollbar{
+.all-reels::-webkit-scrollbar {
   display: none;
 }
 
 .reel {
   height: 100%;
-  width: 100%;
-  position: relative;
-  /* background-color: lightseagreen; */
-  overflow: hidden;
-  border-radius: 10px;
-  margin-bottom: 20px;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  position: relative;
+  border-radius: 18px;
 }
 
 .reel video {
-  height: 100%;
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  filter: brightness(.92) contrast(1.05);
 }
 
-.reel .bottom {
-  padding: 30px 20px;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.948));
-  width: 100%;
+/* Fade Soft Overlay */
+.reel::after {
+  content: "";
   position: absolute;
   bottom: 0;
+  height: 45%;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
 }
 
-.bottom .user {
+/* Content Bottom */
+.bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  width: calc(100% - 30px);
+  color: white;
+  animation: fadeUp .6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
+/* User */
+.user{
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.bottom .user img {
-  height: 25px;
-  width: 25px;
+.user img {
+  height: 36px;
+  width: 36px;
   border-radius: 50%;
-  object-fit: cover;
 }
 
-.bottom .user h4 {
-  font-size: 15px;
-  font-weight: 500;
+.user h3 {
+  font-size: 14px;
 }
 
-.bottom .user button {
-  background-color: transparent;
-  padding: 2px 4px;
+.user button {
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
   font-size: 12px;
-  font-weight: 500;
-  border-radius: 2px;
-  border: 1px solid white;
+  padding: 4px 14px;
+  border: 1px solid rgba(255,255,255,.4);
+  transition: .3s;
 }
 
-.bottom > h3 {
-  font-weight: 500;
-  font-size: 20px;
+.user button:hover {
+  background: rgba(255,255,255,.45);
+  color: #111;
 }
 
-
+/* Right Controls */
 .right {
-  padding: 30px;
+  position: absolute;
+  bottom: 24%;
+  right: 14px;
   display: flex;
   flex-direction: column;
+  gap: 22px;
   align-items: center;
-  gap: 18px;
-  text-align: center;
-  width: 40px;
-  position: absolute;
-  right: 0;
-  /* height: 100%; */
-  /* transform: translateX(100%); */
-  bottom: 12%;
-  /* background: linear-gradient(to right, transparent,rgba(0, 0, 0, 0.284)); */
 }
 
-.right h4{
-  cursor: pointer;
+.right i{
+  font-size: 26px;
+  color: white;
+  opacity: .9;
+  transition: .25s;
 }
-.right i {
-  font-size: 25px;
-  font-weight: 500;
-
+.right i:active {
+  transform: scale(.7);
 }
 
 .right h6 {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
+  color: rgba(255,255,255,.85);
 }
 
-.right > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  cursor: pointer;
+/* Heart Animation (Subtle) */
+.love {
+  color: #ff4b77 !important;
+  animation: pop .4s ease forwards;
 }
 
-.love{
-  color: red;
-}
-.right > div h4{
-  pointer-events: none;
-}
-
-.right > div h6{
-  pointer-events: none;
+@keyframes pop {
+  0% {transform: scale(.6);}
+  70% {transform: scale(1.35);}
+  100% {transform: scale(1);}
 }
 
-
-.mute{
-  background-color: #333;
-  border-radius: 50%;
+/* Mute Minimal Button */
+.mute {
+  position: absolute;
+  top: 15px;
+  right: 15px;
   height: 40px;
   width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-}
-.mute i {
-  font-size: 20px;
-  pointer-events: none;
-}
-.mute:active{
-  scale: 0.95;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(7px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
 }
